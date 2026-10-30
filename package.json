@@ -1,0 +1,77 @@
+{
+  "name": "focusquest",
+  "version": "1.0.0",
+  "description": "FocusQuest - Minimal Study App With Virtual Pet",
+  "main": "dist/electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "dev:electron": "electron .",
+    "build:electron": "node build-electron.mjs",
+    "build:renderer": "vite build",
+    "build": "npm run build:electron && npm run build:renderer",
+    "dist": "npm run build && electron-builder --win",
+    "dist:portable": "npm run build && electron-builder --win portable",
+    "dist:dir": "npm run build && electron-builder --win --dir",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "study",
+    "focus",
+    "pomodoro",
+    "virtual-pet",
+    "gamification"
+  ],
+  "author": "FocusQuest Team",
+  "license": "MIT",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.1.7",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "better-sqlite3": "^13.0.3",
+    "canvas-confetti": "^1.9.4",
+    "electron": "^45.0.0",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.28.2",
+    "lucide-react": "^1.16.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0",
+    "vitest": "^4.0.8"
+  },
+  "build": {
+    "appId": "com.focusquest.app",
+    "productName": "FocusQuest",
+    "directories": {
+      "output": "release"
+    },
+    "npmRebuild": false,
+    "asar": true,
+    "files": [
+      "dist/electron/**/*",
+      "dist/renderer/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "FocusQuest"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "FocusQuest — Distraction Monitor",
+  "version": "1.0.0",
+  "description": "Giám sát website gây xao nhãng kết nối với ứng dụng FocusQuest Desktop.",
+  "permissions": [
+    "tabs",
+    "alarms",
+    "storage",
+    "notifications",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:48123/*",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "FocusQuest Distraction Monitor"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start"
+    }
+  ]
+}
